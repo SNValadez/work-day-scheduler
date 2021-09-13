@@ -27,21 +27,36 @@ $(document).ready(function() {
     })
 
     function timeTracker () {
-        var timeNow = moment().hour();
+        var currentDay2 = moment(day).format("dddd, MMMM Do YYYY, h:mm:ss a")
 
         $(".time-block").each(function () {
             var blockTime = parseInt($(this).attr("id").split("hour")[1]);
 
-            if (blockTime < timeNow) {
+            if (blockTime < currentDay2) {
                 $(this).removeClass("future");
                 $(this).removeClass("present");
+                $(this).addClass("past");
+            } else if (blockTime === currentDay2) {
+                $(this).removeClass("past");
+                $(this).removeClass("future");
                 $(this).addClass("present");
             } else {
                 $(this).removeClass("present");
-                
+                $(this).removeClass("past");
+                $(this).addClass("future");
             }
-        }
-        
-        )
+        })
     }
-}
+    timeTracker();
+
+    $("#1 .description").val(localStorage.getItem("1"));
+    $("#2 .description").val(localStorage.getItem("2"));
+    $("#3 .description").val(localStorage.getItem("3"));
+    $("#4 .description").val(localStorage.getItem("4"));
+    $("#5 .description").val(localStorage.getItem("5"));
+    $("#6 .description").val(localStorage.getItem("6"));
+    $("#7 .description").val(localStorage.getItem("7"));
+    $("#8 .description").val(localStorage.getItem("8"));
+    $("#9 .description").val(localStorage.getItem("9"));
+
+})
